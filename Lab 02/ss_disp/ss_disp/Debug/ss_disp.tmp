@@ -1,0 +1,33 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.2.7</VERSION>
+ <DEVICE>"ATmega16"</DEVICE>
+ <WORKING_DIR>C:\Users\vmuser\Documents\Atmel Studio\7.0\ss_disp\ss_disp\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\avrasm\inc</DIR>
+  <DIR>C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avrassembler\Include</DIR>
+  <DIR></DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>C:\Users\vmuser\Documents\Atmel Studio\7.0\ss_disp\ss_disp\ss_disp.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\avrasm\inc\m16def.inc</FILE>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\avrasm\inc\M16DEF.INC</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>C:\Users\vmuser\Documents\Atmel Studio\7.0\ss_disp\ss_disp\Debug\ss_disp.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>ss_disp.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>ss_disp.map</FILE>
+  <FILE>ss_disp.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <DATA_IN_RAM><FILE>C:\Users\vmuser\Documents\Atmel Studio\7.0\ss_disp\ss_disp\ss_disp.asm</FILE><LINE>13</LINE></DATA_IN_RAM>
+  <CODE_TABLE><FILE>C:\Users\vmuser\Documents\Atmel Studio\7.0\ss_disp\ss_disp\ss_disp.asm</FILE><LINE>53</LINE></CODE_TABLE>
+  <MAIN><FILE>C:\Users\vmuser\Documents\Atmel Studio\7.0\ss_disp\ss_disp\ss_disp.asm</FILE><LINE>64</LINE></MAIN>
+  <T0_OV_ISR><FILE>C:\Users\vmuser\Documents\Atmel Studio\7.0\ss_disp\ss_disp\ss_disp.asm</FILE><LINE>113</LINE></T0_OV_ISR>
+  <DISP><FILE>C:\Users\vmuser\Documents\Atmel Studio\7.0\ss_disp\ss_disp\ss_disp.asm</FILE><LINE>96</LINE></DISP>
+  <REINIT><FILE>C:\Users\vmuser\Documents\Atmel Studio\7.0\ss_disp\ss_disp\ss_disp.asm</FILE><LINE>100</LINE></REINIT>
+ </LABELS>
+</ASSEMBLER_INFO>

@@ -1,0 +1,8 @@
+$repeat 75
+    PIND |= 0x04
+    #20
+    PIND = 0x00
+    #20
+$endrep
+
+PIND |= 0x04

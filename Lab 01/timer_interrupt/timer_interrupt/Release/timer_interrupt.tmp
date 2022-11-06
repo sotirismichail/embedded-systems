@@ -1,0 +1,30 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.2.7</VERSION>
+ <DEVICE>"ATmega16"</DEVICE>
+ <WORKING_DIR>C:\Users\vmuser\Documents\Atmel Studio\7.0\timer_interrupt\timer_interrupt\Release</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\avrasm\inc</DIR>
+  <DIR>C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avrassembler\Include</DIR>
+  <DIR></DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>C:\Users\vmuser\Documents\Atmel Studio\7.0\timer_interrupt\timer_interrupt\timer_interrupt.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\avrasm\inc\m16def.inc</FILE>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\avrasm\inc\M16DEF.INC</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>C:\Users\vmuser\Documents\Atmel Studio\7.0\timer_interrupt\timer_interrupt\Release\timer_interrupt.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>timer_interrupt.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>timer_interrupt.map</FILE>
+  <FILE>timer_interrupt.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <MAIN><FILE>C:\Users\vmuser\Documents\Atmel Studio\7.0\timer_interrupt\timer_interrupt\timer_interrupt.asm</FILE><LINE>26</LINE></MAIN>
+  <T0_OV_ISR><FILE>C:\Users\vmuser\Documents\Atmel Studio\7.0\timer_interrupt\timer_interrupt\timer_interrupt.asm</FILE><LINE>46</LINE></T0_OV_ISR>
+  <HERE><FILE>C:\Users\vmuser\Documents\Atmel Studio\7.0\timer_interrupt\timer_interrupt\timer_interrupt.asm</FILE><LINE>42</LINE></HERE>
+ </LABELS>
+</ASSEMBLER_INFO>

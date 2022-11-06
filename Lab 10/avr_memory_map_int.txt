@@ -1,0 +1,97 @@
+AVR Memory Usage
+----------------
+Device: atmega16
+
+Program:     876 bytes (5.3% Full)
+(.text + .data + .bootloader)
+
+Data:         58 bytes (5.7% Full)
+(.data + .bss + .noinit)
+
+AVR Memory Map
+--------------
+00000000 W __heap_end
+00000000 A __TEXT_REGION_ORIGIN__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 W __vector_default
+00000000 T __vectors
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000002 A __FUSE_REGION_LENGTH__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003f a __SREG__
+0000003f a __SREG__
+00000054 T __ctors_end
+00000054 T __ctors_start
+00000054 T __dtors_end
+00000054 T __dtors_start
+00000054 W __init
+00000054 T __trampolines_end
+00000054 T __trampolines_start
+00000060 T __do_copy_data
+0000007e T __bad_interrupt
+0000007e W __vector_1
+0000007e W __vector_10
+0000007e W __vector_11
+0000007e W __vector_12
+0000007e W __vector_13
+0000007e W __vector_14
+0000007e W __vector_15
+0000007e W __vector_16
+0000007e W __vector_17
+0000007e W __vector_18
+0000007e W __vector_19
+0000007e W __vector_2
+0000007e W __vector_20
+0000007e W __vector_3
+0000007e W __vector_4
+0000007e W __vector_5
+0000007e W __vector_6
+0000007e W __vector_7
+0000007e W __vector_8
+0000007e W __vector_9
+00000082 T matrix_init
+000000e8 T matrix_mult
+000001a8 T main
+000001d6 t do_rand
+00000200 A __EEPROM_REGION_LENGTH__
+00000268 T rand_r
+0000026e T rand
+00000278 T srand
+0000028e T __divmodsi4
+000002ac t __divmodsi4_neg2
+000002ba t __divmodsi4_exit
+000002bc T __negsi2
+000002cc T __muluhisi3
+000002e2 T __mulshisi3
+000002e8 T __mulohisi3
+000002f2 T __udivmodsi4
+000002fe t __udivmodsi4_loop
+00000318 t __udivmodsi4_ep
+00000336 T __umulhisi3
+00000354 T _exit
+00000354 W exit
+00000356 t __stop_program
+00000358 A __data_load_start
+00000358 T _etext
+00000392 A __data_load_end
+00000400 A __DATA_REGION_LENGTH__
+00000400 A __LOCK_REGION_LENGTH__
+00000400 A __SIGNATURE_REGION_LENGTH__
+00000400 A __USER_SIGNATURE_REGION_LENGTH__
+0000045f W __stack
+00004000 A __TEXT_REGION_LENGTH__
+00800060 D c
+00800060 A __DATA_REGION_ORIGIN__
+00800060 D __data_start
+00800072 D b
+00800084 D a
+00800096 d next
+0080009a D __data_end
+0080009a D _edata
+0080009a D _end
+00810000 D __eeprom_end

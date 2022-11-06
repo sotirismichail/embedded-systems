@@ -1,0 +1,8 @@
+$repeat 75
+    PINA0 |= 0x01
+    #20
+    PINA0 = 0x00
+    #20
+$endrep
+
+PINA = 0x01

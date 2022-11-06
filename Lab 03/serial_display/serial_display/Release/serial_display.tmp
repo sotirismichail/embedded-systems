@@ -1,0 +1,50 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.2.7</VERSION>
+ <DEVICE>"ATmega16"</DEVICE>
+ <WORKING_DIR>C:\Users\vmuser\Documents\Atmel Studio\7.0\serial_display\serial_display\Release</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\avrasm\inc</DIR>
+  <DIR>C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avrassembler\Include</DIR>
+  <DIR>C:\Program Files (x86)\Atmel\AVR Tools\AvrAssembler2\Appnotes</DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>C:\Users\vmuser\Documents\Atmel Studio\7.0\serial_display\serial_display\serial_display.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\avrasm\inc\m16def.inc</FILE>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\avrasm\inc\M16DEF.INC</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>C:\Users\vmuser\Documents\Atmel Studio\7.0\serial_display\serial_display\Release\serial_display.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>serial_display.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>serial_display.map</FILE>
+  <FILE>serial_display.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <DATA_IN_RAM><FILE>C:\Users\vmuser\Documents\Atmel Studio\7.0\serial_display\serial_display\serial_display.asm</FILE><LINE>13</LINE></DATA_IN_RAM>
+  <CODE_TABLE><FILE>C:\Users\vmuser\Documents\Atmel Studio\7.0\serial_display\serial_display\serial_display.asm</FILE><LINE>24</LINE></CODE_TABLE>
+  <MAIN><FILE>C:\Users\vmuser\Documents\Atmel Studio\7.0\serial_display\serial_display\serial_display.asm</FILE><LINE>38</LINE></MAIN>
+  <T0_OV_ISR><FILE>C:\Users\vmuser\Documents\Atmel Studio\7.0\serial_display\serial_display\serial_display.asm</FILE><LINE>267</LINE></T0_OV_ISR>
+  <RXC_HANDLER><FILE>C:\Users\vmuser\Documents\Atmel Studio\7.0\serial_display\serial_display\serial_display.asm</FILE><LINE>104</LINE></RXC_HANDLER>
+  <DISP><FILE>C:\Users\vmuser\Documents\Atmel Studio\7.0\serial_display\serial_display\serial_display.asm</FILE><LINE>80</LINE></DISP>
+  <REINIT_RAM_CALL><FILE>C:\Users\vmuser\Documents\Atmel Studio\7.0\serial_display\serial_display\serial_display.asm</FILE><LINE>84</LINE></REINIT_RAM_CALL>
+  <REINIT_RAM><FILE>C:\Users\vmuser\Documents\Atmel Studio\7.0\serial_display\serial_display\serial_display.asm</FILE><LINE>167</LINE></REINIT_RAM>
+  <RCV><FILE>C:\Users\vmuser\Documents\Atmel Studio\7.0\serial_display\serial_display\serial_display.asm</FILE><LINE>106</LINE></RCV>
+  <RCV_END><FILE>C:\Users\vmuser\Documents\Atmel Studio\7.0\serial_display\serial_display\serial_display.asm</FILE><LINE>145</LINE></RCV_END>
+  <RCV_AT><FILE>C:\Users\vmuser\Documents\Atmel Studio\7.0\serial_display\serial_display\serial_display.asm</FILE><LINE>138</LINE></RCV_AT>
+  <SCRN_CLR><FILE>C:\Users\vmuser\Documents\Atmel Studio\7.0\serial_display\serial_display\serial_display.asm</FILE><LINE>244</LINE></SCRN_CLR>
+  <RCV_CR><FILE>C:\Users\vmuser\Documents\Atmel Studio\7.0\serial_display\serial_display\serial_display.asm</FILE><LINE>131</LINE></RCV_CR>
+  <RCV_STORE><FILE>C:\Users\vmuser\Documents\Atmel Studio\7.0\serial_display\serial_display\serial_display.asm</FILE><LINE>149</LINE></RCV_STORE>
+  <RCV_LF><FILE>C:\Users\vmuser\Documents\Atmel Studio\7.0\serial_display\serial_display\serial_display.asm</FILE><LINE>127</LINE></RCV_LF>
+  <ERREPLY><FILE>C:\Users\vmuser\Documents\Atmel Studio\7.0\serial_display\serial_display\serial_display.asm</FILE><LINE>204</LINE></ERREPLY>
+  <REPLY><FILE>C:\Users\vmuser\Documents\Atmel Studio\7.0\serial_display\serial_display\serial_display.asm</FILE><LINE>185</LINE></REPLY>
+  <REINIT_LOOP><FILE>C:\Users\vmuser\Documents\Atmel Studio\7.0\serial_display\serial_display\serial_display.asm</FILE><LINE>168</LINE></REINIT_LOOP>
+  <REINIT_RET><FILE>C:\Users\vmuser\Documents\Atmel Studio\7.0\serial_display\serial_display\serial_display.asm</FILE><LINE>174</LINE></REINIT_RET>
+  <TRANSMT><FILE>C:\Users\vmuser\Documents\Atmel Studio\7.0\serial_display\serial_display\serial_display.asm</FILE><LINE>229</LINE></TRANSMT>
+  <CLR_LOOP><FILE>C:\Users\vmuser\Documents\Atmel Studio\7.0\serial_display\serial_display\serial_display.asm</FILE><LINE>248</LINE></CLR_LOOP>
+  <CLR_RET><FILE>C:\Users\vmuser\Documents\Atmel Studio\7.0\serial_display\serial_display\serial_display.asm</FILE><LINE>254</LINE></CLR_RET>
+  <DISP_RET><FILE>C:\Users\vmuser\Documents\Atmel Studio\7.0\serial_display\serial_display\serial_display.asm</FILE><LINE>284</LINE></DISP_RET>
+ </LABELS>
+</ASSEMBLER_INFO>

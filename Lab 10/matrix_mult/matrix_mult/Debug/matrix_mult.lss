@@ -1,0 +1,540 @@
+
+matrix_mult.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000358  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         0000003a  00800060  00000358  000003cc  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .comment      00000030  00000000  00000000  00000406  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000438  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000030  00000000  00000000  00000474  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   000007c5  00000000  00000000  000004a4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000607  00000000  00000000  00000c69  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   0000029b  00000000  00000000  00001270  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000090  00000000  00000000  0000150c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000328  00000000  00000000  0000159c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    000001e3  00000000  00000000  000018c4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000068  00000000  00000000  00001aa7  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+   8:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+   c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  10:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  14:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  18:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  1c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  20:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  24:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  28:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  2c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  30:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  34:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  38:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  3c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  40:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  44:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  48:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  4c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  50:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d4 e0       	ldi	r29, 0x04	; 4
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e8 e5       	ldi	r30, 0x58	; 88
+  68:	f3 e0       	ldi	r31, 0x03	; 3
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	aa 39       	cpi	r26, 0x9A	; 154
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+  76:	0e 94 d4 00 	call	0x1a8	; 0x1a8 <main>
+  7a:	0c 94 aa 01 	jmp	0x354	; 0x354 <_exit>
+
+0000007e <__bad_interrupt>:
+  7e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000082 <matrix_init>:
+ * description: Fills a 3x3 matrix with (pseudo) random
+ *				elements
+ */
+void
+matrix_init(element_t matrix[3][3])
+{
+  82:	cf 92       	push	r12
+  84:	df 92       	push	r13
+  86:	ef 92       	push	r14
+  88:	ff 92       	push	r15
+  8a:	0f 93       	push	r16
+  8c:	1f 93       	push	r17
+  8e:	cf 93       	push	r28
+  90:	df 93       	push	r29
+  92:	8c 01       	movw	r16, r24
+	for (unsigned char i = 0; i <= 2; i++) {
+  94:	c1 2c       	mov	r12, r1
+  96:	1c c0       	rjmp	.+56     	; 0xd0 <matrix_init+0x4e>
+		for (unsigned char j = 0; j <= 2; j++) {
+			matrix[i][j] = (element_t)rand();
+  98:	8c 2d       	mov	r24, r12
+  9a:	90 e0       	ldi	r25, 0x00	; 0
+  9c:	ec 01       	movw	r28, r24
+  9e:	cc 0f       	add	r28, r28
+  a0:	dd 1f       	adc	r29, r29
+  a2:	c8 0f       	add	r28, r24
+  a4:	d9 1f       	adc	r29, r25
+  a6:	cc 0f       	add	r28, r28
+  a8:	dd 1f       	adc	r29, r29
+  aa:	c0 0f       	add	r28, r16
+  ac:	d1 1f       	adc	r29, r17
+  ae:	ed 2c       	mov	r14, r13
+  b0:	f1 2c       	mov	r15, r1
+  b2:	0e 94 37 01 	call	0x26e	; 0x26e <rand>
+  b6:	ee 0c       	add	r14, r14
+  b8:	ff 1c       	adc	r15, r15
+  ba:	ce 0d       	add	r28, r14
+  bc:	df 1d       	adc	r29, r15
+  be:	99 83       	std	Y+1, r25	; 0x01
+  c0:	88 83       	st	Y, r24
+ */
+void
+matrix_init(element_t matrix[3][3])
+{
+	for (unsigned char i = 0; i <= 2; i++) {
+		for (unsigned char j = 0; j <= 2; j++) {
+  c2:	d3 94       	inc	r13
+  c4:	01 c0       	rjmp	.+2      	; 0xc8 <matrix_init+0x46>
+  c6:	d1 2c       	mov	r13, r1
+  c8:	82 e0       	ldi	r24, 0x02	; 2
+  ca:	8d 15       	cp	r24, r13
+  cc:	28 f7       	brcc	.-54     	; 0x98 <matrix_init+0x16>
+ *				elements
+ */
+void
+matrix_init(element_t matrix[3][3])
+{
+	for (unsigned char i = 0; i <= 2; i++) {
+  ce:	c3 94       	inc	r12
+  d0:	82 e0       	ldi	r24, 0x02	; 2
+  d2:	8c 15       	cp	r24, r12
+  d4:	c0 f7       	brcc	.-16     	; 0xc6 <matrix_init+0x44>
+		for (unsigned char j = 0; j <= 2; j++) {
+			matrix[i][j] = (element_t)rand();
+		}
+	}
+}
+  d6:	df 91       	pop	r29
+  d8:	cf 91       	pop	r28
+  da:	1f 91       	pop	r17
+  dc:	0f 91       	pop	r16
+  de:	ff 90       	pop	r15
+  e0:	ef 90       	pop	r14
+  e2:	df 90       	pop	r13
+  e4:	cf 90       	pop	r12
+  e6:	08 95       	ret
+
+000000e8 <matrix_mult>:
+ *				matrices a and b are multiplied, and the result is
+ *				another 3x3 matrix, which is stored as matrix "c".
+ */
+void
+matrix_mult(element_t a[3][3], element_t b[3][3], element_t c[3][3]) 
+{
+  e8:	cf 92       	push	r12
+  ea:	df 92       	push	r13
+  ec:	ff 92       	push	r15
+  ee:	0f 93       	push	r16
+  f0:	1f 93       	push	r17
+  f2:	cf 93       	push	r28
+  f4:	df 93       	push	r29
+	element_t sum;
+
+	for (unsigned char i = 0; i <= 2; i++) {
+  f6:	f1 2c       	mov	r15, r1
+  f8:	4c c0       	rjmp	.+152    	; 0x192 <matrix_mult+0xaa>
+		for (unsigned char j = 0; j <= 2; j++) {
+			sum = 0;
+			for (unsigned char k = 0; k <= 2; k++) {
+				sum = sum + a[i][k] * b[k][j];
+  fa:	2f 2d       	mov	r18, r15
+  fc:	30 e0       	ldi	r19, 0x00	; 0
+  fe:	f9 01       	movw	r30, r18
+ 100:	ee 0f       	add	r30, r30
+ 102:	ff 1f       	adc	r31, r31
+ 104:	e2 0f       	add	r30, r18
+ 106:	f3 1f       	adc	r31, r19
+ 108:	ee 0f       	add	r30, r30
+ 10a:	ff 1f       	adc	r31, r31
+ 10c:	e8 0f       	add	r30, r24
+ 10e:	f9 1f       	adc	r31, r25
+ 110:	2c 2f       	mov	r18, r28
+ 112:	30 e0       	ldi	r19, 0x00	; 0
+ 114:	89 01       	movw	r16, r18
+ 116:	00 0f       	add	r16, r16
+ 118:	11 1f       	adc	r17, r17
+ 11a:	e0 0f       	add	r30, r16
+ 11c:	f1 1f       	adc	r31, r17
+ 11e:	c0 80       	ld	r12, Z
+ 120:	d1 80       	ldd	r13, Z+1	; 0x01
+ 122:	20 0f       	add	r18, r16
+ 124:	31 1f       	adc	r19, r17
+ 126:	22 0f       	add	r18, r18
+ 128:	33 1f       	adc	r19, r19
+ 12a:	26 0f       	add	r18, r22
+ 12c:	37 1f       	adc	r19, r23
+ 12e:	0d 2f       	mov	r16, r29
+ 130:	10 e0       	ldi	r17, 0x00	; 0
+ 132:	00 0f       	add	r16, r16
+ 134:	11 1f       	adc	r17, r17
+ 136:	20 0f       	add	r18, r16
+ 138:	31 1f       	adc	r19, r17
+ 13a:	f9 01       	movw	r30, r18
+ 13c:	00 81       	ld	r16, Z
+ 13e:	11 81       	ldd	r17, Z+1	; 0x01
+ 140:	c0 9e       	mul	r12, r16
+ 142:	90 01       	movw	r18, r0
+ 144:	c1 9e       	mul	r12, r17
+ 146:	30 0d       	add	r19, r0
+ 148:	d0 9e       	mul	r13, r16
+ 14a:	30 0d       	add	r19, r0
+ 14c:	11 24       	eor	r1, r1
+ 14e:	a2 0f       	add	r26, r18
+ 150:	b3 1f       	adc	r27, r19
+	element_t sum;
+
+	for (unsigned char i = 0; i <= 2; i++) {
+		for (unsigned char j = 0; j <= 2; j++) {
+			sum = 0;
+			for (unsigned char k = 0; k <= 2; k++) {
+ 152:	cf 5f       	subi	r28, 0xFF	; 255
+ 154:	03 c0       	rjmp	.+6      	; 0x15c <matrix_mult+0x74>
+ 156:	c0 e0       	ldi	r28, 0x00	; 0
+ 158:	a0 e0       	ldi	r26, 0x00	; 0
+ 15a:	b0 e0       	ldi	r27, 0x00	; 0
+ 15c:	c3 30       	cpi	r28, 0x03	; 3
+ 15e:	68 f2       	brcs	.-102    	; 0xfa <matrix_mult+0x12>
+				sum = sum + a[i][k] * b[k][j];
+			}
+			c[i][j] = sum;
+ 160:	2f 2d       	mov	r18, r15
+ 162:	30 e0       	ldi	r19, 0x00	; 0
+ 164:	f9 01       	movw	r30, r18
+ 166:	ee 0f       	add	r30, r30
+ 168:	ff 1f       	adc	r31, r31
+ 16a:	2e 0f       	add	r18, r30
+ 16c:	3f 1f       	adc	r19, r31
+ 16e:	22 0f       	add	r18, r18
+ 170:	33 1f       	adc	r19, r19
+ 172:	24 0f       	add	r18, r20
+ 174:	35 1f       	adc	r19, r21
+ 176:	ed 2f       	mov	r30, r29
+ 178:	f0 e0       	ldi	r31, 0x00	; 0
+ 17a:	ee 0f       	add	r30, r30
+ 17c:	ff 1f       	adc	r31, r31
+ 17e:	e2 0f       	add	r30, r18
+ 180:	f3 1f       	adc	r31, r19
+ 182:	b1 83       	std	Z+1, r27	; 0x01
+ 184:	a0 83       	st	Z, r26
+matrix_mult(element_t a[3][3], element_t b[3][3], element_t c[3][3]) 
+{
+	element_t sum;
+
+	for (unsigned char i = 0; i <= 2; i++) {
+		for (unsigned char j = 0; j <= 2; j++) {
+ 186:	df 5f       	subi	r29, 0xFF	; 255
+ 188:	01 c0       	rjmp	.+2      	; 0x18c <matrix_mult+0xa4>
+ 18a:	d0 e0       	ldi	r29, 0x00	; 0
+ 18c:	d3 30       	cpi	r29, 0x03	; 3
+ 18e:	18 f3       	brcs	.-58     	; 0x156 <matrix_mult+0x6e>
+void
+matrix_mult(element_t a[3][3], element_t b[3][3], element_t c[3][3]) 
+{
+	element_t sum;
+
+	for (unsigned char i = 0; i <= 2; i++) {
+ 190:	f3 94       	inc	r15
+ 192:	f2 e0       	ldi	r31, 0x02	; 2
+ 194:	ff 15       	cp	r31, r15
+ 196:	c8 f7       	brcc	.-14     	; 0x18a <matrix_mult+0xa2>
+				sum = sum + a[i][k] * b[k][j];
+			}
+			c[i][j] = sum;
+		}
+	}
+}
+ 198:	df 91       	pop	r29
+ 19a:	cf 91       	pop	r28
+ 19c:	1f 91       	pop	r17
+ 19e:	0f 91       	pop	r16
+ 1a0:	ff 90       	pop	r15
+ 1a2:	df 90       	pop	r13
+ 1a4:	cf 90       	pop	r12
+ 1a6:	08 95       	ret
+
+000001a8 <main>:
+
+int
+main(void) 
+{
+	srand(0);					//Initialize the pseudorandom generator
+ 1a8:	80 e0       	ldi	r24, 0x00	; 0
+ 1aa:	90 e0       	ldi	r25, 0x00	; 0
+ 1ac:	0e 94 3c 01 	call	0x278	; 0x278 <srand>
+	
+	matrix_init(a);		//Load random numbers in the two matrices
+ 1b0:	84 e8       	ldi	r24, 0x84	; 132
+ 1b2:	90 e0       	ldi	r25, 0x00	; 0
+ 1b4:	0e 94 41 00 	call	0x82	; 0x82 <matrix_init>
+	matrix_init(b);
+ 1b8:	82 e7       	ldi	r24, 0x72	; 114
+ 1ba:	90 e0       	ldi	r25, 0x00	; 0
+ 1bc:	0e 94 41 00 	call	0x82	; 0x82 <matrix_init>
+
+	matrix_mult(a,b,c);			//Perform the multiplication
+ 1c0:	40 e6       	ldi	r20, 0x60	; 96
+ 1c2:	50 e0       	ldi	r21, 0x00	; 0
+ 1c4:	62 e7       	ldi	r22, 0x72	; 114
+ 1c6:	70 e0       	ldi	r23, 0x00	; 0
+ 1c8:	84 e8       	ldi	r24, 0x84	; 132
+ 1ca:	90 e0       	ldi	r25, 0x00	; 0
+ 1cc:	0e 94 74 00 	call	0xe8	; 0xe8 <matrix_mult>
+}
+ 1d0:	80 e0       	ldi	r24, 0x00	; 0
+ 1d2:	90 e0       	ldi	r25, 0x00	; 0
+ 1d4:	08 95       	ret
+
+000001d6 <do_rand>:
+ 1d6:	8f 92       	push	r8
+ 1d8:	9f 92       	push	r9
+ 1da:	af 92       	push	r10
+ 1dc:	bf 92       	push	r11
+ 1de:	cf 92       	push	r12
+ 1e0:	df 92       	push	r13
+ 1e2:	ef 92       	push	r14
+ 1e4:	ff 92       	push	r15
+ 1e6:	cf 93       	push	r28
+ 1e8:	df 93       	push	r29
+ 1ea:	ec 01       	movw	r28, r24
+ 1ec:	68 81       	ld	r22, Y
+ 1ee:	79 81       	ldd	r23, Y+1	; 0x01
+ 1f0:	8a 81       	ldd	r24, Y+2	; 0x02
+ 1f2:	9b 81       	ldd	r25, Y+3	; 0x03
+ 1f4:	61 15       	cp	r22, r1
+ 1f6:	71 05       	cpc	r23, r1
+ 1f8:	81 05       	cpc	r24, r1
+ 1fa:	91 05       	cpc	r25, r1
+ 1fc:	21 f4       	brne	.+8      	; 0x206 <__EEPROM_REGION_LENGTH__+0x6>
+ 1fe:	64 e2       	ldi	r22, 0x24	; 36
+ 200:	79 ed       	ldi	r23, 0xD9	; 217
+ 202:	8b e5       	ldi	r24, 0x5B	; 91
+ 204:	97 e0       	ldi	r25, 0x07	; 7
+ 206:	2d e1       	ldi	r18, 0x1D	; 29
+ 208:	33 ef       	ldi	r19, 0xF3	; 243
+ 20a:	41 e0       	ldi	r20, 0x01	; 1
+ 20c:	50 e0       	ldi	r21, 0x00	; 0
+ 20e:	0e 94 47 01 	call	0x28e	; 0x28e <__divmodsi4>
+ 212:	49 01       	movw	r8, r18
+ 214:	5a 01       	movw	r10, r20
+ 216:	9b 01       	movw	r18, r22
+ 218:	ac 01       	movw	r20, r24
+ 21a:	a7 ea       	ldi	r26, 0xA7	; 167
+ 21c:	b1 e4       	ldi	r27, 0x41	; 65
+ 21e:	0e 94 66 01 	call	0x2cc	; 0x2cc <__muluhisi3>
+ 222:	6b 01       	movw	r12, r22
+ 224:	7c 01       	movw	r14, r24
+ 226:	ac ee       	ldi	r26, 0xEC	; 236
+ 228:	b4 ef       	ldi	r27, 0xF4	; 244
+ 22a:	a5 01       	movw	r20, r10
+ 22c:	94 01       	movw	r18, r8
+ 22e:	0e 94 74 01 	call	0x2e8	; 0x2e8 <__mulohisi3>
+ 232:	dc 01       	movw	r26, r24
+ 234:	cb 01       	movw	r24, r22
+ 236:	8c 0d       	add	r24, r12
+ 238:	9d 1d       	adc	r25, r13
+ 23a:	ae 1d       	adc	r26, r14
+ 23c:	bf 1d       	adc	r27, r15
+ 23e:	b7 ff       	sbrs	r27, 7
+ 240:	03 c0       	rjmp	.+6      	; 0x248 <__EEPROM_REGION_LENGTH__+0x48>
+ 242:	01 97       	sbiw	r24, 0x01	; 1
+ 244:	a1 09       	sbc	r26, r1
+ 246:	b0 48       	sbci	r27, 0x80	; 128
+ 248:	88 83       	st	Y, r24
+ 24a:	99 83       	std	Y+1, r25	; 0x01
+ 24c:	aa 83       	std	Y+2, r26	; 0x02
+ 24e:	bb 83       	std	Y+3, r27	; 0x03
+ 250:	9f 77       	andi	r25, 0x7F	; 127
+ 252:	df 91       	pop	r29
+ 254:	cf 91       	pop	r28
+ 256:	ff 90       	pop	r15
+ 258:	ef 90       	pop	r14
+ 25a:	df 90       	pop	r13
+ 25c:	cf 90       	pop	r12
+ 25e:	bf 90       	pop	r11
+ 260:	af 90       	pop	r10
+ 262:	9f 90       	pop	r9
+ 264:	8f 90       	pop	r8
+ 266:	08 95       	ret
+
+00000268 <rand_r>:
+ 268:	0e 94 eb 00 	call	0x1d6	; 0x1d6 <do_rand>
+ 26c:	08 95       	ret
+
+0000026e <rand>:
+ 26e:	86 e9       	ldi	r24, 0x96	; 150
+ 270:	90 e0       	ldi	r25, 0x00	; 0
+ 272:	0e 94 eb 00 	call	0x1d6	; 0x1d6 <do_rand>
+ 276:	08 95       	ret
+
+00000278 <srand>:
+ 278:	a0 e0       	ldi	r26, 0x00	; 0
+ 27a:	b0 e0       	ldi	r27, 0x00	; 0
+ 27c:	80 93 96 00 	sts	0x0096, r24	; 0x800096 <next>
+ 280:	90 93 97 00 	sts	0x0097, r25	; 0x800097 <next+0x1>
+ 284:	a0 93 98 00 	sts	0x0098, r26	; 0x800098 <next+0x2>
+ 288:	b0 93 99 00 	sts	0x0099, r27	; 0x800099 <next+0x3>
+ 28c:	08 95       	ret
+
+0000028e <__divmodsi4>:
+ 28e:	05 2e       	mov	r0, r21
+ 290:	97 fb       	bst	r25, 7
+ 292:	1e f4       	brtc	.+6      	; 0x29a <__divmodsi4+0xc>
+ 294:	00 94       	com	r0
+ 296:	0e 94 5e 01 	call	0x2bc	; 0x2bc <__negsi2>
+ 29a:	57 fd       	sbrc	r21, 7
+ 29c:	07 d0       	rcall	.+14     	; 0x2ac <__divmodsi4_neg2>
+ 29e:	0e 94 79 01 	call	0x2f2	; 0x2f2 <__udivmodsi4>
+ 2a2:	07 fc       	sbrc	r0, 7
+ 2a4:	03 d0       	rcall	.+6      	; 0x2ac <__divmodsi4_neg2>
+ 2a6:	4e f4       	brtc	.+18     	; 0x2ba <__divmodsi4_exit>
+ 2a8:	0c 94 5e 01 	jmp	0x2bc	; 0x2bc <__negsi2>
+
+000002ac <__divmodsi4_neg2>:
+ 2ac:	50 95       	com	r21
+ 2ae:	40 95       	com	r20
+ 2b0:	30 95       	com	r19
+ 2b2:	21 95       	neg	r18
+ 2b4:	3f 4f       	sbci	r19, 0xFF	; 255
+ 2b6:	4f 4f       	sbci	r20, 0xFF	; 255
+ 2b8:	5f 4f       	sbci	r21, 0xFF	; 255
+
+000002ba <__divmodsi4_exit>:
+ 2ba:	08 95       	ret
+
+000002bc <__negsi2>:
+ 2bc:	90 95       	com	r25
+ 2be:	80 95       	com	r24
+ 2c0:	70 95       	com	r23
+ 2c2:	61 95       	neg	r22
+ 2c4:	7f 4f       	sbci	r23, 0xFF	; 255
+ 2c6:	8f 4f       	sbci	r24, 0xFF	; 255
+ 2c8:	9f 4f       	sbci	r25, 0xFF	; 255
+ 2ca:	08 95       	ret
+
+000002cc <__muluhisi3>:
+ 2cc:	0e 94 9b 01 	call	0x336	; 0x336 <__umulhisi3>
+ 2d0:	a5 9f       	mul	r26, r21
+ 2d2:	90 0d       	add	r25, r0
+ 2d4:	b4 9f       	mul	r27, r20
+ 2d6:	90 0d       	add	r25, r0
+ 2d8:	a4 9f       	mul	r26, r20
+ 2da:	80 0d       	add	r24, r0
+ 2dc:	91 1d       	adc	r25, r1
+ 2de:	11 24       	eor	r1, r1
+ 2e0:	08 95       	ret
+
+000002e2 <__mulshisi3>:
+ 2e2:	b7 ff       	sbrs	r27, 7
+ 2e4:	0c 94 66 01 	jmp	0x2cc	; 0x2cc <__muluhisi3>
+
+000002e8 <__mulohisi3>:
+ 2e8:	0e 94 66 01 	call	0x2cc	; 0x2cc <__muluhisi3>
+ 2ec:	82 1b       	sub	r24, r18
+ 2ee:	93 0b       	sbc	r25, r19
+ 2f0:	08 95       	ret
+
+000002f2 <__udivmodsi4>:
+ 2f2:	a1 e2       	ldi	r26, 0x21	; 33
+ 2f4:	1a 2e       	mov	r1, r26
+ 2f6:	aa 1b       	sub	r26, r26
+ 2f8:	bb 1b       	sub	r27, r27
+ 2fa:	fd 01       	movw	r30, r26
+ 2fc:	0d c0       	rjmp	.+26     	; 0x318 <__udivmodsi4_ep>
+
+000002fe <__udivmodsi4_loop>:
+ 2fe:	aa 1f       	adc	r26, r26
+ 300:	bb 1f       	adc	r27, r27
+ 302:	ee 1f       	adc	r30, r30
+ 304:	ff 1f       	adc	r31, r31
+ 306:	a2 17       	cp	r26, r18
+ 308:	b3 07       	cpc	r27, r19
+ 30a:	e4 07       	cpc	r30, r20
+ 30c:	f5 07       	cpc	r31, r21
+ 30e:	20 f0       	brcs	.+8      	; 0x318 <__udivmodsi4_ep>
+ 310:	a2 1b       	sub	r26, r18
+ 312:	b3 0b       	sbc	r27, r19
+ 314:	e4 0b       	sbc	r30, r20
+ 316:	f5 0b       	sbc	r31, r21
+
+00000318 <__udivmodsi4_ep>:
+ 318:	66 1f       	adc	r22, r22
+ 31a:	77 1f       	adc	r23, r23
+ 31c:	88 1f       	adc	r24, r24
+ 31e:	99 1f       	adc	r25, r25
+ 320:	1a 94       	dec	r1
+ 322:	69 f7       	brne	.-38     	; 0x2fe <__udivmodsi4_loop>
+ 324:	60 95       	com	r22
+ 326:	70 95       	com	r23
+ 328:	80 95       	com	r24
+ 32a:	90 95       	com	r25
+ 32c:	9b 01       	movw	r18, r22
+ 32e:	ac 01       	movw	r20, r24
+ 330:	bd 01       	movw	r22, r26
+ 332:	cf 01       	movw	r24, r30
+ 334:	08 95       	ret
+
+00000336 <__umulhisi3>:
+ 336:	a2 9f       	mul	r26, r18
+ 338:	b0 01       	movw	r22, r0
+ 33a:	b3 9f       	mul	r27, r19
+ 33c:	c0 01       	movw	r24, r0
+ 33e:	a3 9f       	mul	r26, r19
+ 340:	70 0d       	add	r23, r0
+ 342:	81 1d       	adc	r24, r1
+ 344:	11 24       	eor	r1, r1
+ 346:	91 1d       	adc	r25, r1
+ 348:	b2 9f       	mul	r27, r18
+ 34a:	70 0d       	add	r23, r0
+ 34c:	81 1d       	adc	r24, r1
+ 34e:	11 24       	eor	r1, r1
+ 350:	91 1d       	adc	r25, r1
+ 352:	08 95       	ret
+
+00000354 <_exit>:
+ 354:	f8 94       	cli
+
+00000356 <__stop_program>:
+ 356:	ff cf       	rjmp	.-2      	; 0x356 <__stop_program>
